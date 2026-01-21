@@ -1,89 +1,256 @@
 /* =========================================================
-   TITIK FIKSI — Admin Theme
+   TITIK FIKSI — ADMIN PRO GLASS (FINAL)
    File: admin/admin.css
+   Catatan:
+   - Hanya mempercantik tampilan
+   - Tidak mengubah sistem login
    ========================================================= */
 
-:root {
-  --bg-1: #f6f7ff;
-  --bg-2: #eef3ff;
-  --bg-3: #ffffff;
+:root{
+  --bg-1:#f6f7ff;
+  --bg-2:#eef3ff;
+  --bg-3:#ffffff;
 
-  --text-1: #0f172a;
-  --text-2: #334155;
-  --muted: #64748b;
+  --text-1:#0f172a;
+  --text-2:#334155;
+  --muted:#64748b;
 
-  --glass: rgba(255, 255, 255, 0.65);
-  --glass-strong: rgba(255, 255, 255, 0.80);
-  --border: rgba(15, 23, 42, 0.12);
+  --brand:#3b82f6;
+  --brand-2:#8b5cf6;
 
-  --brand: #3b82f6;
-  --brand-2: #8b5cf6;
+  --glass: rgba(255,255,255,0.56);
+  --glass-strong: rgba(255,255,255,0.80);
+  --border: rgba(15,23,42,0.12);
 
-  --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-soft: 0 18px 60px rgba(16,24,40,0.10);
+  --shadow-card: 0 14px 28px rgba(16,24,40,0.10);
+
+  --radius-xl: 22px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+
+  --blur: 18px;
 }
 
-body {
-  margin: 0;
+/* Background like website */
+body{
+  margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   color: var(--text-1);
   background:
-    radial-gradient(1000px 700px at 10% 0%, var(--bg-2), transparent 60%),
-    radial-gradient(900px 600px at 90% 10%, rgba(139, 92, 246, 0.18), transparent 55%),
+    radial-gradient(1100px 740px at 10% 0%, var(--bg-2), transparent 60%),
+    radial-gradient(1000px 680px at 90% 10%, rgba(139,92,246,0.18), transparent 55%),
     linear-gradient(180deg, var(--bg-1), var(--bg-3));
 }
 
-/* Sidebar */
-.nc-sidebar {
+*{
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* =========================================================
+   Sidebar (left navigation)
+   ========================================================= */
+.nc-sidebar,
+[class*="Sidebar"]{
   background: var(--glass) !important;
   border-right: 1px solid var(--border) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: var(--shadow-soft);
-}
 
-/* Panel editor */
-.nc-entryEditor,
-.Card,
-.nc-entryListingCard {
-  background: var(--glass) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 18px !important;
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+
   box-shadow: var(--shadow-soft) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 
-/* Tombol */
-button,
-.nc-button,
-.nc-button-primary,
-.nc-button-secondary {
+/* Sidebar logo/header area */
+.nc-sidebarHeader,
+[class*="SidebarHeader"]{
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Sidebar items */
+.nc-collectionPage-sidebar a,
+.nc-sidebar a,
+[class*="Sidebar"] a{
+  border-radius: 14px !important;
+  transition: 160ms ease !important;
+}
+
+.nc-sidebar a:hover,
+[class*="Sidebar"] a:hover{
+  background: rgba(255,255,255,0.55) !important;
   border-radius: 14px !important;
 }
 
-.nc-button-primary {
+/* active highlight (best effort) */
+.nc-listItemLinkActive,
+[class*="ListItemLinkActive"],
+a[aria-current="page"]{
+  background: rgba(255,255,255,0.70) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+}
+
+/* =========================================================
+   Main panels / cards / editor area
+   ========================================================= */
+.nc-entryEditor,
+.nc-entryListingCard,
+.Card,
+[class*="Card"],
+[class*="entryListingCard"]{
+  background: var(--glass) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-xl) !important;
+
+  box-shadow: var(--shadow-card) !important;
+
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}
+
+/* Make content area look roomy */
+.nc-entryEditor-wrapper,
+[class*="Content"]{
+  padding-top: 14px !important;
+}
+
+/* Hide harsh borders on top bar if any */
+.nc-appHeader,
+[class*="AppHeader"],
+[class*="TopBar"]{
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+/* =========================================================
+   Buttons (pro look)
+   ========================================================= */
+button,
+.nc-button,
+[class*="Button"]{
+  border-radius: 14px !important;
+  transition: transform 150ms ease, box-shadow 150ms ease !important;
+}
+
+button:hover,
+.nc-button:hover,
+[class*="Button"]:hover{
+  transform: translateY(-1px) !important;
+}
+
+.nc-button-primary,
+[class*="Button_primary"],
+button[type="submit"]{
   background: linear-gradient(135deg, var(--brand), var(--brand-2)) !important;
-  border: none !important;
-  color: white !important;
+  color:#fff !important;
+  border:none !important;
+  box-shadow: 0 14px 26px rgba(59,130,246,0.18) !important;
 }
 
 .nc-button-secondary,
-.nc-button {
+[class*="Button_secondary"]{
   background: var(--glass-strong) !important;
   border: 1px solid var(--border) !important;
   color: var(--text-2) !important;
 }
 
-/* Input */
+/* =========================================================
+   Forms / inputs
+   ========================================================= */
 input,
 textarea,
-select {
+select,
+.nc-textField-input,
+.nc-textArea,
+[class*="TextField"],
+[class*="TextArea"],
+[class*="Select"]{
   background: var(--glass-strong) !important;
   border: 1px solid var(--border) !important;
-  border-radius: 14px !important;
+  border-radius: var(--radius-md) !important;
+
   color: var(--text-1) !important;
+  outline: none !important;
 }
 
-a {
-  color: var(--brand) !important;
+input:focus,
+textarea:focus,
+select:focus{
+  border-color: rgba(59,130,246,0.55) !important;
+  box-shadow: 0 0 0 5px rgba(59,130,246,0.12) !important;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color: rgba(100,116,139,0.88) !important;
+}
+
+/* Field label */
+label,
+.nc-fieldLabel,
+[class*="FieldLabel"]{
+  color: var(--text-2) !important;
+  font-weight: 750 !important;
+}
+
+/* help text */
+.nc-fieldHint,
+[class*="FieldHint"]{
+  color: var(--muted) !important;
+}
+
+/* =========================================================
+   Lists / tables (best effort)
+   ========================================================= */
+table,
+[class*="Table"]{
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden !important;
+  border: 1px solid var(--border) !important;
+  background: rgba(255,255,255,0.55) !important;
+}
+
+/* =========================================================
+   Notifications / Toast
+   ========================================================= */
+.nc-notification,
+[class*="Notification"],
+[class*="Toast"]{
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border) !important;
+  background: var(--glass-strong) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+/* =========================================================
+   Scrollbar (nice)
+   ========================================================= */
+*::-webkit-scrollbar{
+  width:10px;
+  height:10px;
+}
+*::-webkit-scrollbar-thumb{
+  background: rgba(15,23,42,0.18);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.25);
+  border-radius: 999px;
+}
+
+/* =========================================================
+   Netlify Identity Widget (popup login)
+   ========================================================= */
+.netlify-identity-widget{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial !important;
+}
+
+.netlify-identity-widget .btn{
+  border-radius: 14px !important;
+}
+
+.netlify-identity-widget .btn.btnPrimary{
+  background: linear-gradient(135deg, var(--brand), var(--brand-2)) !important;
+  border:none !important;
 }
