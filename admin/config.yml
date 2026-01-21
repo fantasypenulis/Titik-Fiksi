@@ -7,30 +7,49 @@ publish_mode: simple
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
 
-# ✅ URL WEBSITE ANDA SEKARANG (INI KUNCI EMAIL LOGIN)
+# Penting untuk proses invite/password
 site_url: "https://titikfantasy.netlify.app"
 
 locale: "id"
 
 collections:
+  # =========================
+  # HOME
+  # =========================
   - name: "home"
-    label: "🏠 Home"
+    label: "🏠 Beranda"
     files:
       - name: "home"
-        label: "Pengaturan Beranda"
+        label: "Konten Beranda"
         file: "content/home/home.json"
         format: "json"
         fields:
-          - label: "Hero"
+          - label: "Judul Besar"
             name: "hero"
             widget: "object"
             fields:
-              - { label: "Judul", name: "title", widget: "string" }
-              - { label: "Subtitle", name: "subtitle", widget: "string" }
-              - { label: "Intro", name: "intro", widget: "text" }
-              - { label: "YouTube Embed URL", name: "youtube_embed", widget: "string", required: false }
+              - label: "Nama Brand / Judul"
+                name: "title"
+                widget: "string"
+                hint: "Contoh: Titik Fiksi"
 
-          - label: "Platforms"
+              - label: "Subtitle"
+                name: "subtitle"
+                widget: "string"
+                hint: "Contoh: Novelis • Penulis • Storyteller"
+
+              - label: "Intro (Deskripsi singkat)"
+                name: "intro"
+                widget: "text"
+                hint: "Teks pembuka di halaman utama."
+
+              - label: "YouTube Embed URL (Opsional)"
+                name: "youtube_embed"
+                widget: "string"
+                required: false
+                hint: "Gunakan link embed. Jika kosong, video tidak tampil."
+
+          - label: "Link Platform Baca"
             name: "platforms"
             widget: "object"
             fields:
@@ -41,7 +60,7 @@ collections:
               - { label: "Fizzo", name: "fizzo", widget: "string", required: false }
               - { label: "KaryaKarsa", name: "karyakarsa", widget: "string", required: false }
 
-          - label: "Social Media"
+          - label: "Sosial Media"
             name: "socials"
             widget: "object"
             fields:
@@ -51,25 +70,58 @@ collections:
               - { label: "TikTok", name: "tiktok", widget: "string", required: false }
               - { label: "YouTube", name: "youtube", widget: "string", required: false }
 
+  # =========================
+  # NOVEL / WORKS
+  # =========================
   - name: "works"
-    label: "📚 Novel / Karya"
+    label: "📚 Novel"
     files:
       - name: "works"
         label: "Daftar Novel"
         file: "content/works/works.json"
         format: "json"
         fields:
-          - label: "Works"
+          - label: "Novel"
             name: "works"
             widget: "list"
+            summary: "{{fields.title}} • {{fields.genre}} • {{fields.status}}"
             fields:
-              - { label: "Judul", name: "title", widget: "string" }
-              - { label: "Slug (wajib, untuk URL)", name: "slug", widget: "string" }
-              - { label: "Cover (URL / path)", name: "cover", widget: "string", required: false }
-              - { label: "Genre", name: "genre", widget: "string", required: false }
-              - { label: "Status", name: "status", widget: "string", required: false }
-              - { label: "Sinopsis", name: "synopsis", widget: "text", required: false }
+              - label: "Judul Novel"
+                name: "title"
+                widget: "string"
 
+              - label: "Slug (untuk link)"
+                name: "slug"
+                widget: "string"
+                hint: "Harus unik. Contoh: naga-di-langit"
+
+              - label: "Genre"
+                name: "genre"
+                widget: "string"
+                required: false
+                hint: "Contoh: Fantasi, Romance, Horor"
+
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["Ongoing", "Tamat", "Coming Soon"]
+                default: "Ongoing"
+
+              - label: "Cover (URL / path)"
+                name: "cover"
+                widget: "string"
+                required: false
+                hint: "Boleh kosong. Jika kosong, akan memakai cover default."
+
+              - label: "Sinopsis"
+                name: "synopsis"
+                widget: "text"
+                required: false
+                hint: "Tulis sinopsis menarik, 3–8 baris."
+
+  # =========================
+  # WRITINGS
+  # =========================
   - name: "writings"
     label: "✍️ Tulisan"
     files:
@@ -78,23 +130,57 @@ collections:
         file: "content/writings/writings.json"
         format: "json"
         fields:
-          - label: "Writings"
+          - label: "Tulisan"
             name: "writings"
             widget: "list"
+            summary: "{{fields.title}} • {{fields.category}}"
             fields:
-              - { label: "Judul", name: "title", widget: "string" }
-              - { label: "Slug (wajib, untuk URL)", name: "slug", widget: "string" }
-              - { label: "Kategori", name: "category", widget: "string", required: false }
-              - { label: "Tanggal (YYYY-MM-DD)", name: "date", widget: "string", required: false }
-              - { label: "Isi Tulisan", name: "content", widget: "text" }
+              - label: "Judul Tulisan"
+                name: "title"
+                widget: "string"
 
+              - label: "Slug (untuk link)"
+                name: "slug"
+                widget: "string"
+                hint: "Contoh: catatan-penulis-01"
+
+              - label: "Kategori"
+                name: "category"
+                widget: "select"
+                options: ["Catatan", "Artikel", "Update Novel", "Cerpen", "Refleksi"]
+                default: "Catatan"
+                required: false
+
+              - label: "Tanggal"
+                name: "date"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                time_format: false
+                required: false
+
+              - label: "Isi Tulisan"
+                name: "content"
+                widget: "text"
+                hint: "Tulis isi tulisan. Bisa panjang."
+
+  # =========================
+  # SETTINGS
+  # =========================
   - name: "settings"
-    label: "⚙️ Settings"
+    label: "⚙️ Pengaturan"
     files:
       - name: "general"
-        label: "General Settings"
+        label: "Pengaturan Umum Website"
         file: "content/settings/settings_general.json"
         format: "json"
         fields:
-          - { label: "Judul Website", name: "site_title", widget: "string" }
-          - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+          - label: "Judul Website (SEO)"
+            name: "site_title"
+            widget: "string"
+            hint: "Judul yang tampil di tab browser & SEO."
+
+          - label: "Meta Description"
+            name: "meta_description"
+            widget: "text"
+            required: false
+            hint: "Deskripsi singkat website untuk Google."
