@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Titik Fiksi</title>
+  <title>Titik Fiksi | Website Resmi</title>
+
+  <!-- ✅ Netlify Identity Widget (WAJIB untuk konfirmasi email & set password) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <link rel="stylesheet" href="assets/css/themes.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
@@ -42,73 +45,25 @@
     </div>
   </div>
 
-  <header class="hero">
+  <main class="section">
     <div class="container">
-      <div class="hero-inner glass-card">
 
-        <div>
-          <h1 id="hero-title">Titik Fiksi</h1>
-          <div class="hero-subtitle" id="hero-subtitle">
-            Website resmi novel dan tulisan
-          </div>
+      <div class="hero glass-card" style="padding:18px;">
+        <h1 id="hero-title" style="margin-top:0;">Titik Fiksi</h1>
+        <p id="hero-subtitle" style="color:var(--muted); margin-top:8px;">Novelis • Penulis • Storyteller</p>
+        <p id="intro-text" style="color:var(--text-2); line-height:1.7;">
+          Selamat datang di Titik Fiksi. Di sini Anda bisa membaca novel, menemukan tulisan, dan mengikuti update terbaru.
+        </p>
 
-          <p id="intro-text">
-            Selamat datang. Di sini Anda bisa menemukan novel, tulisan, dan update terbaru.
-          </p>
-
-          <div class="hero-cta">
-            <a href="works.html" class="btn btn-primary">📚 Baca Novel</a>
-            <a href="writings.html" class="btn btn-soft">✍️ Lihat Tulisan</a>
-          </div>
-
-          <div class="platform-grid">
-            <a class="btn-platform link-wattpad" href="#" target="_blank" rel="noopener">Wattpad</a>
-            <a class="btn-platform link-goodnovel" href="#" target="_blank" rel="noopener">GoodNovel</a>
-            <a class="btn-platform link-kbm" href="#" target="_blank" rel="noopener">KBM</a>
-            <a class="btn-platform link-maxnovel" href="#" target="_blank" rel="noopener">MaxNovel</a>
-            <a class="btn-platform link-fizzo" href="#" target="_blank" rel="noopener">Fizzo</a>
-            <a class="btn-platform link-karyakarsa" href="#" target="_blank" rel="noopener">KaryaKarsa</a>
-          </div>
-
-          <div class="platform-note">Tombol muncul otomatis jika link sudah diisi lewat Admin.</div>
-
-          <div class="social-row">
-            <a class="social-icon social-ig" href="#" target="_blank" rel="noopener">Instagram</a>
-            <a class="social-icon social-fb" href="#" target="_blank" rel="noopener">Facebook</a>
-            <a class="social-icon social-tw" href="#" target="_blank" rel="noopener">Twitter/X</a>
-            <a class="social-icon social-tt" href="#" target="_blank" rel="noopener">TikTok</a>
-            <a class="social-icon social-yt" href="#" target="_blank" rel="noopener">YouTube</a>
-          </div>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="works.html">📚 Lihat Novel</a>
+          <a class="btn btn-soft" href="writings.html">✍️ Baca Tulisan</a>
+          <a class="btn btn-soft" href="admin/">🛠️ Admin</a>
         </div>
-
-        <div class="hero-side">
-          <div class="mini-card glass-panel">
-            <div class="mini-card-title">🎬 Trailer</div>
-            <div class="mini-card-desc">Video trailer akan muncul jika Anda isi YouTube Embed di Admin.</div>
-          </div>
-
-          <div class="mini-card glass-panel">
-            <iframe
-              id="youtube-frame"
-              width="100%"
-              height="210"
-              style="border:0; border-radius:18px;"
-              src=""
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              title="Trailer"
-            ></iframe>
-          </div>
-
-          <div class="mini-card glass-panel">
-            <div class="mini-card-title">✨ Tema</div>
-            <div class="mini-card-desc">Klik tombol tema di kanan atas untuk mengganti tampilan.</div>
-          </div>
-        </div>
-
       </div>
+
     </div>
-  </header>
+  </main>
 
   <footer class="footer">
     <div class="container">
@@ -121,8 +76,26 @@
 
   <script src="assets/js/theme.js"></script>
   <script src="assets/js/main.js"></script>
+
   <script>
     document.getElementById("yearNow").textContent = new Date().getFullYear();
+
+    // ✅ FIX: kalau user klik link invite dari email, token akan masuk ke URL root "/#invite_token=..."
+    // widget harus otomatis dibuka supaya muncul form buat password
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", (user) => {
+        const hash = window.location.hash || "";
+        const hasInvite = hash.includes("invite_token=");
+        const hasRecovery = hash.includes("recovery_token=");
+        const hasAccess = hash.includes("access_token=");
+
+        if (!user && (hasInvite || hasRecovery || hasAccess)) {
+          // buka modal agar user bisa set password / konfirmasi
+          window.netlifyIdentity.open();
+        }
+      });
+    }
   </script>
+
 </body>
 </html>
