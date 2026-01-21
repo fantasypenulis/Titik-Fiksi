@@ -1,0 +1,89 @@
+/* =========================================================
+   TITIK FIKSI — Admin Theme
+   File: admin/admin.css
+   ========================================================= */
+
+:root {
+  --bg-1: #f6f7ff;
+  --bg-2: #eef3ff;
+  --bg-3: #ffffff;
+
+  --text-1: #0f172a;
+  --text-2: #334155;
+  --muted: #64748b;
+
+  --glass: rgba(255, 255, 255, 0.65);
+  --glass-strong: rgba(255, 255, 255, 0.80);
+  --border: rgba(15, 23, 42, 0.12);
+
+  --brand: #3b82f6;
+  --brand-2: #8b5cf6;
+
+  --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: var(--text-1);
+  background:
+    radial-gradient(1000px 700px at 10% 0%, var(--bg-2), transparent 60%),
+    radial-gradient(900px 600px at 90% 10%, rgba(139, 92, 246, 0.18), transparent 55%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-3));
+}
+
+/* Sidebar */
+.nc-sidebar {
+  background: var(--glass) !important;
+  border-right: 1px solid var(--border) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Panel editor */
+.nc-entryEditor,
+.Card,
+.nc-entryListingCard {
+  background: var(--glass) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--shadow-soft) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Tombol */
+button,
+.nc-button,
+.nc-button-primary,
+.nc-button-secondary {
+  border-radius: 14px !important;
+}
+
+.nc-button-primary {
+  background: linear-gradient(135deg, var(--brand), var(--brand-2)) !important;
+  border: none !important;
+  color: white !important;
+}
+
+.nc-button-secondary,
+.nc-button {
+  background: var(--glass-strong) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-2) !important;
+}
+
+/* Input */
+input,
+textarea,
+select {
+  background: var(--glass-strong) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+  color: var(--text-1) !important;
+}
+
+a {
+  color: var(--brand) !important;
+}

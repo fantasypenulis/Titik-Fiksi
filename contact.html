@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="pearl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontak | Titik Fiksi</title>
+
+  <link rel="stylesheet" href="assets/css/themes.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+  <div class="navbar-wrap">
+    <div class="container">
+      <nav class="navbar glass-panel">
+        <a class="brand" href="index.html">
+          <div class="brand-logo">
+            <img src="assets/images/logo/favicon.png" alt="Logo" onerror="this.style.display='none'">
+          </div>
+          <div class="brand-title">
+            <strong>Titik Fiksi</strong>
+            <span>Novelis • Penulis</span>
+          </div>
+        </a>
+
+        <div class="nav-links">
+          <a href="index.html">Beranda</a>
+          <a href="works.html">Novel</a>
+          <a href="writings.html">Tulisan</a>
+          <a href="about.html">Tentang</a>
+          <a href="contact.html">Kontak</a>
+        </div>
+
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-btn" type="button">
+            <span class="theme-dot"></span>
+            <span id="theme-label">Pearl Sky</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main class="section">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>📩 Kontak</h2>
+        <p>Kerja sama, pertanyaan, atau hal lainnya.</p>
+      </div>
+
+      <div class="glass-card" style="padding:18px;">
+        <p style="margin-top:0; color: var(--muted); line-height:1.7;">
+          Untuk sementara, kontak akan ditampilkan berupa tombol sosial.
+          Nanti jika Anda setuju, saya bisa buatkan form yang otomatis mengarah ke WhatsApp.
+        </p>
+
+        <div class="social-row" style="margin-top:16px;">
+          <a class="social-icon social-ig" href="#" target="_blank" rel="noopener">Instagram</a>
+          <a class="social-icon social-yt" href="#" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner glass-panel">
+        <div>© <span id="yearNow"></span> Titik Fiksi</div>
+        <div><a href="admin/">Admin</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById("yearNow").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

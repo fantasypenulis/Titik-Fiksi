@@ -1,0 +1,97 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: simple
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+locale: "id"
+
+collections:
+  - name: "home"
+    label: "🏠 Home"
+    files:
+      - name: "home"
+        label: "Pengaturan Beranda"
+        file: "content/home/home.json"
+        format: "json"
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "YouTube Embed URL", name: "youtube_embed", widget: "string", required: false }
+
+          - label: "Platforms"
+            name: "platforms"
+            widget: "object"
+            fields:
+              - { label: "Wattpad", name: "wattpad", widget: "string", required: false }
+              - { label: "GoodNovel", name: "goodnovel", widget: "string", required: false }
+              - { label: "KBM", name: "kbm", widget: "string", required: false }
+              - { label: "MaxNovel", name: "maxnovel", widget: "string", required: false }
+              - { label: "Fizzo", name: "fizzo", widget: "string", required: false }
+              - { label: "KaryaKarsa", name: "karyakarsa", widget: "string", required: false }
+
+          - label: "Social Media"
+            name: "socials"
+            widget: "object"
+            fields:
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "Facebook", name: "facebook", widget: "string", required: false }
+              - { label: "Twitter/X", name: "twitter", widget: "string", required: false }
+              - { label: "TikTok", name: "tiktok", widget: "string", required: false }
+              - { label: "YouTube", name: "youtube", widget: "string", required: false }
+
+  - name: "works"
+    label: "📚 Novel / Karya"
+    files:
+      - name: "works"
+        label: "Daftar Novel"
+        file: "content/works/works.json"
+        format: "json"
+        fields:
+          - label: "Works"
+            name: "works"
+            widget: "list"
+            fields:
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Slug (wajib, untuk URL)", name: "slug", widget: "string" }
+              - { label: "Cover (URL / path)", name: "cover", widget: "string", required: false }
+              - { label: "Genre", name: "genre", widget: "string", required: false }
+              - { label: "Status", name: "status", widget: "string", required: false }
+              - { label: "Sinopsis", name: "synopsis", widget: "text", required: false }
+
+  - name: "writings"
+    label: "✍️ Tulisan"
+    files:
+      - name: "writings"
+        label: "Daftar Tulisan"
+        file: "content/writings/writings.json"
+        format: "json"
+        fields:
+          - label: "Writings"
+            name: "writings"
+            widget: "list"
+            fields:
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Slug (wajib, untuk URL)", name: "slug", widget: "string" }
+              - { label: "Kategori", name: "category", widget: "string", required: false }
+              - { label: "Tanggal (YYYY-MM-DD)", name: "date", widget: "string", required: false }
+              - { label: "Isi Tulisan", name: "content", widget: "text" }
+
+  - name: "settings"
+    label: "⚙️ Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "content/settings/settings_general.json"
+        format: "json"
+        fields:
+          - { label: "Judul Website", name: "site_title", widget: "string" }
+          - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
